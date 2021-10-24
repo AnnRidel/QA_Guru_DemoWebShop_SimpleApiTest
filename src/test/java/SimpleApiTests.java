@@ -24,7 +24,6 @@ public class SimpleApiTests {
     String email = "test11@test.ru";
     String password = "testtest";
     String userCookie = null;
-    String itemsAmount = null;
 
     @Test
     @Feature("Subscribing to news letters")
@@ -108,38 +107,4 @@ public class SimpleApiTests {
         });
     }
 
-    @Test
-    @Feature("Shopping cart")
-    @Tag("API")
-    @Tester("AKuznetsova")
-    @JiraIssue("123")
-    @DisplayName("Check amount of items in the cart")
-    void checkAmountOfProductsAddedToTheCart() {
-        step("Authorization", () -> {
-            Authorization authorization = new Authorization();
-            userCookie = authorization.GetAutorizationCookies(email, password, baseUrl);
-        });
-        step("Add item to the cart", () -> {
-            Response response = given()
-                    .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-                    .cookie("NOPCOMMERCE.AUTH", userCookie)
-                    .body("addtocart_31.EnteredQuantity=3")
-                    .when()
-                    .post(baseUrl + "addproducttocart/details/31/1")
-                    .then()
-                    .statusCode(200)
-                    .extract()
-                    .response();
-            itemsAmount = response.path("updatetopcartsectionhtml");
-        });
-        step("Set cookies", () -> {
-            open(baseUrl + "favicon.ico");
-            getWebDriver().manage().addCookie(
-                    new Cookie("NOPCOMMERCE.AUTH", userCookie));
-        });
-        step("Verify amount of items in the cart", () -> {
-            open(baseUrl);
-            $(".cart-qty").shouldHave(Condition.text(itemsAmount));
-        });
-    }
 }
