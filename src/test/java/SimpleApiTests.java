@@ -1,4 +1,10 @@
+import annotations.JiraIssue;
+import annotations.Tester;
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.Cookie;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
@@ -10,6 +16,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static io.qameta.allure.Allure.step;
 
+@Owner("AKuznetsova")
+@DisplayName("DemoWebShopTests")
+
 public class SimpleApiTests {
     String baseUrl = "http://demowebshop.tricentis.com/";
     String email = "test11@test.ru";
@@ -18,6 +27,11 @@ public class SimpleApiTests {
     String itemsAmount = null;
 
     @Test
+    @Feature("Subscribing to news letters")
+    @Tag("API")
+    @Tester("AKuznetsova")
+    @JiraIssue("123")
+    @DisplayName("An attempt to subscribe with an invalid email")
     public void notSubscriberEmptyEmail() {
         step("An attempt to subscribe with an invalid email", () ->{
         Response response = given()
@@ -30,6 +44,11 @@ public class SimpleApiTests {
     });}
 
     @Test
+    @Feature("Subscribing to news letters")
+    @Tag("API")
+    @Tester("AKuznetsova")
+    @JiraIssue("123")
+    @DisplayName("An attempt to subscribe with a valid email")
     public void subscriberValidEmail() {
         step("An attempt to subscribe with a valid email", () ->{
                 Response response = given()
@@ -43,6 +62,11 @@ public class SimpleApiTests {
     }
 
     @Test
+    @Feature("Voting")
+    @Tag("API")
+    @Tester("AKuznetsova")
+    @JiraIssue("123")
+    @DisplayName("Voting by an unauthorized user")
     void VoteUnauthorizedTest() {
         step("Voting by an unauthorized user", () -> {
             Response response =
@@ -59,6 +83,11 @@ public class SimpleApiTests {
     }
 
     @Test
+    @Feature("Voting")
+    @Tag("API")
+    @Tester("AKuznetsova")
+    @JiraIssue("123")
+    @DisplayName("Voting by an authorized user")
     public void voteAuthorizedTest() {
         step("Authorization", () -> {
             Authorization authorization = new Authorization();
@@ -80,6 +109,11 @@ public class SimpleApiTests {
     }
 
     @Test
+    @Feature("Shopping cart")
+    @Tag("API")
+    @Tester("AKuznetsova")
+    @JiraIssue("123")
+    @DisplayName("Check amount of items in the cart")
     void checkAmountOfProductsAddedToTheCart() {
         step("Authorization", () -> {
             Authorization authorization = new Authorization();
