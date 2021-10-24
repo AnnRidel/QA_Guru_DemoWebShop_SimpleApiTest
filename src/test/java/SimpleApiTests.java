@@ -29,7 +29,7 @@ public class SimpleApiTests {
     @Feature("Subscribing to news letters")
     @Tag("API")
     @Tester("AKuznetsova")
-    @JiraIssue("123")
+    @JiraIssue("HOMEWORK-259")
     @DisplayName("An attempt to subscribe with an invalid email")
     public void notSubscriberEmptyEmail() {
         step("An attempt to subscribe with an invalid email", () ->{
@@ -46,7 +46,7 @@ public class SimpleApiTests {
     @Feature("Subscribing to news letters")
     @Tag("API")
     @Tester("AKuznetsova")
-    @JiraIssue("123")
+    @JiraIssue("HOMEWORK-259")
     @DisplayName("An attempt to subscribe with a valid email")
     public void subscriberValidEmail() {
         step("An attempt to subscribe with a valid email", () ->{
@@ -64,7 +64,7 @@ public class SimpleApiTests {
     @Feature("Voting")
     @Tag("API")
     @Tester("AKuznetsova")
-    @JiraIssue("123")
+    @JiraIssue("HOMEWORK-259")
     @DisplayName("Voting by an unauthorized user")
     void VoteUnauthorizedTest() {
         step("Voting by an unauthorized user", () -> {
@@ -85,7 +85,7 @@ public class SimpleApiTests {
     @Feature("Voting")
     @Tag("API")
     @Tester("AKuznetsova")
-    @JiraIssue("123")
+    @JiraIssue("HOMEWORK-259")
     @DisplayName("Voting by an authorized user")
     public void voteAuthorizedTest() {
         step("Authorization", () -> {
