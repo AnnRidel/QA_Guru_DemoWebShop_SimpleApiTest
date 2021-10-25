@@ -43,6 +43,7 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Test) {
     systemProperties(System.getProperties())
+    systemProperty("url", System.getProperty("url", "selenoid.autotests.cloud/wd/hub/"))
     useJUnitPlatform()
 
     testLogging {
